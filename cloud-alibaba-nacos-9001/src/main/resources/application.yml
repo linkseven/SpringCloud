@@ -1,0 +1,17 @@
+server:
+  port: 9001
+spring:
+  application:
+    name: cloud-nacos
+  cloud:
+    nacos:
+      serverAddr: 127.0.0.1:8848
+  config:
+    import:
+      - nacos:nacos-config-example.properties?refresh=true
+#暴露监控端点
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"

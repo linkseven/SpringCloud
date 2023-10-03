@@ -1,0 +1,32 @@
+server:
+  port: 3344
+spring:
+  cloud:
+    config:
+      server:
+        git:
+          uri: git@github.com:linkseven/spring-cloud.git
+          search-paths:
+            - spring-cloud
+      label: master
+  application:
+    name: cloud-config
+  rabbitmq:
+    port: 5672
+    host: localhost
+    username: guest
+    password: guest
+
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    register-with-eureka: true #false表示不向注册中心注册自己。
+    service-url:
+      defaultZone: http://eureka7001.com:7001/eureka
+#暴露监控端点
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "bus-refresh"

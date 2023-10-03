@@ -1,0 +1,35 @@
+server:
+  port: 8401
+spring:
+  application:
+    name: cloud-sentinel-8401
+  cloud:
+    nacos:
+      #serverAddr: 192.168.80.129:1111
+      serverAddr: localhost:8848
+    sentinel:
+      transport:
+        #配置sentinel dashboard地址
+        dashboard: localhost:8080
+        #sentinel api端口
+        port: 8719
+      datasource:
+        ds1:
+          nacos:
+            server-addr: localhost:8848
+            dataId: ${spring.application.name}
+            groupId: DEFAULT_GROUP
+            data-type: json
+            rule-type: flow
+  config:
+    import:
+      - nacos:nacos-config-example.properties?refresh=true
+#暴露监控端点
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+feign:
+  sentinel:
+    enabled: true

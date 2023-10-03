@@ -1,0 +1,30 @@
+server:
+  port: 3366
+spring:
+  cloud:
+    config:
+      label: master
+      name: config  #配置文件名称，相当于config-dev.yml中的config
+      profile: dev  #配置文件后缀，相当于config-dev.yml中的dev
+      uri: http://localhost:3344  #配置中心地址
+  application:
+    name: cloud-config-client
+  rabbitmq:
+    port: 5672
+    host: localhost
+    username: guest
+    password: guest
+
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    register-with-eureka: true #false表示不向注册中心注册自己。
+    service-url:
+      defaultZone: http://eureka7001.com:7001/eureka
+#暴露监控端点
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"

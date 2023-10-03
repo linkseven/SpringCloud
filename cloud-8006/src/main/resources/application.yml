@@ -1,0 +1,19 @@
+server:
+  port: 8006
+
+spring:
+  application:
+    name: cloud-payment-8006
+    devtools:
+      restart:
+        enabled: true  #设置开启热部署
+        additional-paths: src/main/java #重启目录
+        exclude: WEB-INF/**
+      freemarker:
+        cache: false    #页面不加载缓存，修改即时生效
+  cloud:
+    consul:
+      port: 8500
+      host: localhost
+      discovery:
+        service-name: ${spring.application.name}
